@@ -33,3 +33,6 @@
 [submodule "src/competitor/hot/src"]
 	path = src/competitor/hot/src
 	url = https://github.com/speedskater/hot.git
+[submodule "src/competitor/shapeshifter/src"]
+	path = src/competitor/shapeshifter/src
+	url = git@github.com:WangHui025/Shapeshifter.git
