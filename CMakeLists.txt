@@ -21,10 +21,13 @@ include_directories(SYSTEM src/competitor/hot/src/libs/hot/rowex/include)
 include_directories(SYSTEM src/competitor/hot/src/libs/hot/single-threaded/include)
 include_directories(SYSTEM src/competitor/hot/src/libs/idx/content-helpers/include)
 
-add_compile_options(-faligned-new -march=native -g -O3)
+# include_directories("/home/wanghui/gre/GRE/eigen-3.4.0")
+
+# add_compile_options(-faligned-new -march=native -g -O3)
+add_compile_options(-faligned-new -march=native -mavx2 -g -O3)
 
 # add_subdirectory(src/competitor/wormhole)
-add_subdirectory(src/competitor/wormhole_u64)
+# add_subdirectory(src/competitor/wormhole_u64)
 add_subdirectory(src/competitor/masstree)
 
 # microbench
@@ -35,7 +38,7 @@ add_executable(microbench
 target_link_libraries(microbench
         PRIVATE
         # WORMHOLE
-        WORMHOLEU64
+        # WORMHOLEU64
         MASSTREE
 )
 

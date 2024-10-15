@@ -1,6 +1,7 @@
 #include"./indexInterface.h"
 #include "./alex/alex.h"
 #include "./alexol/alex.h"
+#include "./shapeshifter/shapeshifter.h"
 #include "./artsync/artrowex.h"
 #include "./artsync/artolc.h"
 #include "./artsync/artunsync.h"
@@ -13,7 +14,7 @@
 #include "pgm/pgm.h"
 #include "btree/btree.h"
 // #include "wormhole/wormhole.h"
-#include "wormhole_u64/wormhole_u64.h"
+// #include "wormhole_u64/wormhole_u64.h"
 #include "masstree/masstree.h"
 #include "finedex/finedex.h"
 #include "iostream"
@@ -33,9 +34,9 @@ indexInterface<KEY_TYPE, PAYLOAD_TYPE> *get_index(std::string index_type) {
   // else if (index_type == "wormhole") {
   //   index = new WormholeInterface<KEY_TYPE, PAYLOAD_TYPE>;
   // }
-  else if (index_type == "wormhole_u64") {
-    index = new WormholeU64Interface<KEY_TYPE, PAYLOAD_TYPE>;
-  }
+  // else if (index_type == "wormhole_u64") {
+  //   index = new WormholeU64Interface<KEY_TYPE, PAYLOAD_TYPE>;
+  // }
   else if( index_type == "hot") {
     index = new HotInterface<KEY_TYPE, PAYLOAD_TYPE>;
   }
@@ -71,6 +72,9 @@ indexInterface<KEY_TYPE, PAYLOAD_TYPE> *get_index(std::string index_type) {
   }
   else if (index_type == "finedex") {
     index = new finedexInterface<KEY_TYPE, PAYLOAD_TYPE>;
+  }
+  else if (index_type == "shapeshifter") {
+    index = new shapeshifterInterface<KEY_TYPE, PAYLOAD_TYPE>;
   }
   else {
     std::cout << "Could not find a matching index called " << index_type << ".\n";
