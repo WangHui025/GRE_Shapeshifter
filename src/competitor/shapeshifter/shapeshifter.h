@@ -22,21 +22,21 @@ public:
   size_t scan(KEY_TYPE key_low_bound, size_t key_num, std::pair<KEY_TYPE, PAYLOAD_TYPE> *result,
               Param *param = nullptr);
 
-  long long memory_consumption() { return index.total_lipp_alex_size(); }
+  long long memory_consumption() { return index.total_ss_size(); }
 
 private:
-  fiting::BPTree<KEY_TYPE, PAYLOAD_TYPE> index;
+  ss::BPTree<KEY_TYPE, PAYLOAD_TYPE> index;
 };
 
 template<class KEY_TYPE, class PAYLOAD_TYPE>
 void shapeshifterInterface<KEY_TYPE, PAYLOAD_TYPE>::bulk_load(std::pair <KEY_TYPE, PAYLOAD_TYPE> *key_value, size_t num,
                                                       Param *param) {
-  index.lipp_construct(key_value,num);
+  index.ss_construct(key_value,num);
 }
 
 template<class KEY_TYPE, class PAYLOAD_TYPE>
 bool shapeshifterInterface<KEY_TYPE, PAYLOAD_TYPE>::get(KEY_TYPE key, PAYLOAD_TYPE &val, Param *param) {
-  if (index.lipp_search(key).has_value()) {
+  if (index.ss_search(key).has_value()) {
     return true;
   }
   return false;
@@ -44,7 +44,7 @@ bool shapeshifterInterface<KEY_TYPE, PAYLOAD_TYPE>::get(KEY_TYPE key, PAYLOAD_TY
 
 template<class KEY_TYPE, class PAYLOAD_TYPE>
 bool shapeshifterInterface<KEY_TYPE, PAYLOAD_TYPE>::put(KEY_TYPE key, PAYLOAD_TYPE value, Param *param) {
-  return index.lipp_insert(key, value);
+  return index.ss_insert(key, value);
 }
 
 template<class KEY_TYPE, class PAYLOAD_TYPE>
@@ -63,5 +63,5 @@ template<class KEY_TYPE, class PAYLOAD_TYPE>
 size_t shapeshifterInterface<KEY_TYPE, PAYLOAD_TYPE>::scan(KEY_TYPE key_low_bound, size_t key_num,
                                                    std::pair<KEY_TYPE, PAYLOAD_TYPE> *result,
                                                    Param *param) {
-  return index.lipp_scan(result, key_low_bound, key_num);
+  return index.ss_scan(result, key_low_bound, key_num);
 }
